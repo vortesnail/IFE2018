@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 600px;
+  background: purple;
+  margin: 10px auto;
+  display: flex;
+}
+
+.left {
+  width: 180px;
+  background: aqua;
+  box-sizing: border-box;
+  color: white;
+  flex-grow: 1;
+}
+
+.right {
+  width: 420px;
+  background: lightcoral;
+  box-sizing: border-box;
+  color: white;
+  flex-grow: 1;
+}
