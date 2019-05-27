@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: purple;
+  border: 1px solid lightslategrey;
+  margin: 10px 20px;;
+  overflow: hidden;
+}
+
+.right {
+  box-sizing: border-box;
+  background: aqua;
+  float: right;
+  width: 180px;
+}
+
+.left {
+  box-sizing: border-box;
+  background: lightcoral;
+  float: left;
+  width: calc(100% - 180px);
+}

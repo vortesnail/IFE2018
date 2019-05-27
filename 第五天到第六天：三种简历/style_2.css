@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.main {
+  font-size: 16px;
+  margin:0px auto 0 20px;
+}
+
+.resume {
+  width: 15%;
+  min-width: 75px;
+  height: 600px;
+  background: rgb(96, 164, 253);
+  float: left;
+}
+
+.resume h1 {
+  font-size: 34px;
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.content {
+  padding-left: 16%;
+}
+
+.content > div {
+  margin-top: 15px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cap-tecdes,
+.edu-undergraduate,
+.project-p1 {
+  margin-bottom: 10px;
+}
