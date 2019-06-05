@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>根据时间打招呼</title>
+</head>
+<body>
+    <script>
+      var date = new Date();
+      var dateHour = date.getHours();
+      if(dateHour > 0 && dateHour <= 6) alert("熬夜伤身啊大兄弟！");
+      else if(dateHour > 6 && dateHour <= 11) alert("早上好啊，该吃早饭了！");
+      else if(dateHour > 11 && dateHour <= 13) alert("中午好啊，该吃中饭了！");
+      else if(dateHour > 13 && dateHour <= 18) alert("下午好啊，好好工作哈！");
+      else if(dateHour > 18 && dateHour <= 23) alert("休息休息准备睡觉把！");
+    </script>
+</body>
+</html>

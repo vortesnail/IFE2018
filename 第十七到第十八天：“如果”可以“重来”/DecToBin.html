@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>转换为二进制练习</title>
+</head>
+<body>
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+      function dec2bin(decNumber) {
+          // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+          var decStr = "";
+          while(decNumber != 1){
+            decStr = String(decNumber%2) + decStr;
+            decNumber = Math.floor(decNumber/2);
+            console.log(decNumber);
+          }
+          //最后一位最高位手动添加
+          decStr = "1" + decStr;
+          return decStr;
+      }
+
+      var transBtn = document.getElementById("trans-btn");
+      transBtn.onclick = function(){
+        var decNumber = document.getElementById("dec-number");
+        try {
+          if(isNaN(decNumber.value)) throw "不是数字";
+          if(decNumber.value<0) throw "不是正数";
+        } catch (error) {
+          console.log("错误信息：" + error);
+          document.getElementById("result").innerHTML = "运算结果： " + error;
+          return;
+        }
+        //console.log(decNumber.value);
+        let result = dec2bin(decNumber.value);
+        var binBit = document.getElementById("bin-bit");
+
+        //判断输入的位数是否与本该显示的二进制位数相同
+        try {
+          if(result.length > binBit.value) throw "输入的位数小于转换后二进制的位数，不变"
+        } catch (error) {
+          console.log(err);
+        } finally {
+          let zeroNum = 0;
+          if(result.length < binBit.value) {
+            zeroNum = binBit.value - result.length;
+          }
+          let zeroStr = "";
+          for(let i = 0; i < zeroNum; i++) {
+            zeroStr += "0";
+          }
+          result = zeroStr + result;
+        }
+
+        document.getElementById("result").innerHTML = "运算结果： " + result;
+      }
+
+    </script>
+</body>
+</html>
