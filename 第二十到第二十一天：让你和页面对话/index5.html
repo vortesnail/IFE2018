@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>css sprite</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #laugh-btn {
+      width: 480px;
+    }
+
+    .container {
+      box-sizing: border-box;
+      width: 482px;
+      margin: 50px auto;
+      border: 1px solid black;
+    }
+    
+    #laugh {
+      width: 480px;
+      height: 480px;
+      background: url("erik_ce204002.jpg") no-repeat;
+      background-position: 0 0;
+    }
+
+  </style>
+
+
+</head>
+<body>
+  <div class="container">
+    <button id="laugh-btn">点我开始笑！</button>
+    <div id="laugh"></div>
+  </div>
+
+  <script>
+    var laughBtn = document.getElementById("laugh-btn");
+    var laughFace = document.getElementById("laugh");
+    var bgX = 0, bgY = 0;
+    var flag = true;
+
+    laughBtn.onclick = function(){
+      laughAni();
+    }
+
+    function laughAni(){
+      if(flag){
+        if(bgY <= -7200) flag = false;
+        laughFace.style.backgroundPosition = bgX + "px " + bgY + "px";
+        bgY -= 480;
+        console.log(laughFace.style.backgroundPosition);
+        var ani = setTimeout("laughAni()", 30);
+      }else{
+        if(bgY >= -480) flag = true;
+        laughFace.style.backgroundPosition = bgX + "px " + bgY + "px";
+        bgY += 480;
+        console.log(laughFace.style.backgroundPosition);
+        var ani = setTimeout("laughAni()", 30);
+      }
+    }
+  
+  </script>
+
+</body>
+</html>

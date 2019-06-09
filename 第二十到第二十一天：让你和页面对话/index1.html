@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>根据时间打招呼</title>
+</head>
+<body>
+  <input id="name" type="text">    
+  <button id="submit-btn">Submit</button>
+  
+  <script>
+    var submitBtn = document.querySelector("#submit-btn");
+    submitBtn.addEventListener("click", showText);
+    function showText() {
+      var text = document.querySelector("#name");
+      console.log(text.value);
+    }
+
+    document.onkeydown = function(e) {
+      //console.log(e.keyCode == 13);
+      if(e.keyCode == 13) { //回车事件
+        var text = document.querySelector("#name");
+        console.log(text.value);
+      }
+
+      if(e.keyCode == 27) { //ESC事件
+        var text = document.querySelector("#name");
+        text.value = "";
+      }
+    }
+
+  </script>
+</body>
+</html>

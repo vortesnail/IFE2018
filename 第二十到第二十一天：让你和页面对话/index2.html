@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>根据时间打招呼</title>
+  <style>
+      select {
+          display: none;
+      }
+  </style>
+
+</head>
+<body>
+    <label>
+      <input id="school" name="status" type="radio">
+      School
+    </label>
+    <label>
+      <input id="company" name="status" type="radio">
+      Company
+    </label>
+
+    <select id="school-select">        
+      <option>北京邮电大学</option>
+      <option>黑龙江大学</option>
+      <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+      <option>百度</option>
+      <option>爱奇艺</option>        
+    </select>
+
+  <script>
+    var schoolBtn = document.getElementById("school");
+    var schoolSelect = document.getElementById("school-select");
+    var companySelect = document.getElementById("company-select");
+
+    schoolBtn.onclick = function() {
+      schoolSelect.style.cssText = "display: block";
+      companySelect.style.cssText = "display: none";
+      //console.log("显示学校");
+    }
+
+    var companyBtn = document.getElementById("company");
+    companyBtn.onclick = function() {
+      companySelect.style.cssText = "display: block";
+      schoolSelect.style.cssText = "display: none";
+      //console.log("显示公司");
+    }
+
+  </script>
+</body>
+</html>
