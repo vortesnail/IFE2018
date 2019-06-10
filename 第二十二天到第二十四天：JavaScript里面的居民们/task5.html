@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>task5</title>
+
+</head>
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>    
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+    <p id="front-cont">队头元素：</p>
+    <p id="empty-tf">队列是否为空：</p>
+
+    <script>
+    
+    var queue = ["apple", "pear"];
+
+    //入队
+    var inBtn = document.querySelector("#in-btn");
+    inBtn.onclick = function() {
+        var eleText = document.querySelector("#queue-input").value;
+        queue.push(eleText);
+        printArr();
+    }
+
+    //出队
+    var outBtn = document.querySelector("#out-btn");
+    outBtn.onclick = function() {
+        queue.shift();
+        printArr();
+    }
+
+    //打印队头元素内容
+    var fontBtn = document.querySelector("#font-btn");
+    fontBtn.onclick = function() {
+        document.querySelector("#front-cont").innerHTML = "队头元素："+queue[queue.length-1];
+    }
+
+    //判断队列是否为空
+    var emptyBtn = document.querySelector("#empty-btn");
+    emptyBtn.onclick = function() {
+        if(queue.length != 0) document.querySelector("#empty-tf").innerHTML = "队列是否为空：否";
+        else document.querySelector("#empty-tf").innerHTML = "队列是否为空：是";
+    }
+    //打印函数
+    function printArr() {
+        var arrStr = queue.join("->");
+        document.querySelector("#queue-cont").innerHTML = "队列内容：" + arrStr;
+    }
+    
+    </script>
+</body>
+</html>

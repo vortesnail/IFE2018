@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>task7</title>
+
+</head>
+<body>
+
+  <script>
+    var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+    console.log("从小到大：" + arr.sort(function(a, b) {
+      return a - b;
+    }))
+    console.log("从大到小：" + arr.sort(function(a, b) {
+      return b - a;
+    }))
+
+    var arr = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+    console.log("a-z：" + arr.sort(function(a, b) {
+      if(b > a) return -1;
+      if(b < a) return 1;
+      return 0;
+    }))
+    console.log("z-a：" + arr.sort(function(a, b) {
+      if(b > a) return 1;
+      if(b < a) return -1;
+      return 0;
+    }))
+
+    var arr = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+    arr.sort(function(a, b) {
+      if(a[1] < b[1]) return 1;
+      if(a[1] > b[1]) return -1;
+      return 0;
+    });
+    var result = "";
+    for (let i = 0; i < arr.length; i++) {
+      result += "[" + arr[i].toString() + "]" + ",";
+    }
+    result = result.substring(0, result.length-1);
+    console.log(result);
+
+    var arr = [
+      {
+          id: 1,
+          name: 'candy',
+          value: 40
+      }, {
+          id: 2,
+          name: 'Simon',
+          value: 50
+      }, {
+          id: 3,
+          name: 'Tony',
+          value: 45
+      }, {
+          id: 4,
+          name: 'Annie',
+          value: 60
+      }
+    ];
+
+    arr.sort(function(a, b) {
+      if(a.value < b.value) return 1;
+      if(a.value > b.value) return -1;
+      return 0;
+    });
+    console.log(arr);
+
+  
+  </script>
+</body>
+</html>
