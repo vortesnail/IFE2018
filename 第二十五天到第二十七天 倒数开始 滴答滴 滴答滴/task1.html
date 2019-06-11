@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>task1</title>
+  <style>
+    #date-show {
+      width: 500px; 
+      background-color: coral; 
+      margin: 200px auto; 
+      color: white;
+      text-align: center;
+    }
+  
+  </style>
+
+</head>
+<body>
+  <div id="date-show">
+    <p id="date-show-1" >当前日期：</p>
+    <p id="date-show-2" >当前日期：</p>
+  </div>
+
+
+  <script>
+    function clock() {
+      var date = new Date();  
+      var year = date.getFullYear();  
+      var month = date.getMonth()+1;    
+      var day = date.getDate(); 
+      var dayOther = date.getDay();
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      //对齐
+      month = checkTime(month);
+      day = checkTime(day);
+      hour = checkTime(hour);
+      minute = checkTime(minute);
+      second = checkTime(second);
+
+      //按格式输出
+      // type = "china" || "america"
+      printTime("china", year, month, day, dayOther, hour, minute, second);
+      printTime("america", year, month, day, dayOther, hour, minute, second);
+
+      //每一秒刷新一次实现时钟
+      var startTime = setTimeout("clock()", 500);
+    }
+
+    function checkTime(time) {
+      if(time < 10) {
+        time = "0" + time;
+      }
+      return time.toString();
+    }
+
+    function transTime(type, time) {
+      if(type == "china") {
+        switch (time) {
+          case 1:
+            return "星期一";
+            break;
+          case 2:
+            return "星期二";
+            break;
+          case 3:
+            return "星期三";
+            break;
+          case 4:
+            return "星期四";
+            break;
+          case 5:
+            return "星期五";
+            break;
+          case 6:
+            return "星期六";
+            break;          
+          case 0:
+            return "星期天";
+            break;
+          default:
+            break;
+        }
+      }
+      if(type == "america") {
+        switch (time) {
+          case 1:
+            return "Monday";
+            break;
+          case 2:
+            return "Tuesday";
+            break;
+          case 3:
+            return "Wednesday";
+            break;
+          case 4:
+            return "Thursday";
+            break;
+          case 5:
+            return "Friday";
+            break;
+          case 6:
+            return "Saturday";
+            break;          
+          case 0:
+            return "Sunday";
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    function printTime(type, year, month, day, dayOther, hour, minute, second) {
+      if(type == "china") {
+        var date = year.toString() + "年" + month + "月" + day + "日" + dayOther + " " + hour + ":" + minute + ":" + second;
+        document.getElementById("date-show-1").innerHTML = "当前日期：" + date;
+      }
+      if(type == "america") {
+        var date = year.toString() + "-" + month + "-" + day + " " + dayOther + " " + hour + ":" + minute + ":" + second;
+        if(Number(hour) >= 12 && Number(hour) <= 23) date += " PM";
+        else date += " AM";
+        document.getElementById("date-show-2").innerHTML = "当前日期：" + date;
+      }
+
+    }
+  
+    clock();
+  </script>
+</body>
+</html>
