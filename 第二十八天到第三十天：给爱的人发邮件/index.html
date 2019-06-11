@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--link rel="stylesheet" href="style.css" type="text/css">-->
+  <title>emial to lover</title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 220px;
+      margin: 100px auto;
+    }
+
+    ul {
+      text-decoration: none;
+      list-style: none;
+    }
+
+    #email-input,
+    #email-sug-wrapper>li {
+      box-sizing: border-box;
+      width: 200px;
+      height: 34px;
+      padding-left: 4px;
+      font-size: 14px;
+      line-height: 34px;
+    }
+
+    #email-input {
+      outline: none;
+    }
+
+    #email-sug-wrapper {
+      box-sizing: border-box;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    #email-sug-wrapper>li {
+      width: 198px;
+      background-color: white;
+      overflow: hidden;
+    }
+
+    #email-sug-wrapper>li:hover {
+      background-color: lightskyblue;
+    }
+
+
+
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+      </div>
+    </div>
+
+
+    <script>
+      // 邮箱后缀List
+      var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+      var emailInput = document.getElementById("email-input");
+      emailInput.addEventListener("input", inputListener);
+      //默认的ul为不显示
+      var emailWrapper = document.getElementById("email-sug-wrapper");
+      emailWrapper.style.display = "none";
+
+      //input的监听
+      function inputListener() {
+        var inputText = getInputText();
+        var promptArr = getPromptContent(inputText);
+        addToWrapper(promptArr);
+        wrapperShowOrNot(inputText);
+        //li的监听
+        var listArr = emailWrapper.getElementsByTagName("li");
+        addListListener(listArr);
+      }
+
+      //获取用户输入
+      function getInputText() {
+        var inputText = document.getElementById("email-input").value;
+        //console.log(inputText)
+        return inputText.trim();
+      }
+
+      //生成提示框中的提示内容
+      function getPromptContent(promptText) {
+        //判断是否有@并取@之前的字符串
+        //根据前缀匹配的用户输入内容前缀调整
+        //创建postfixList副本，以防改变原有内容
+        var postfixListTemp = [];
+        if(promptText.indexOf("@") != -1) {
+          //获取@之后的前缀
+          var promptTextBack = promptText.substring(promptText.indexOf("@")+1);
+          //将@之后匹配的字符串push进临时的容器内
+          for(var item of postfixList) {
+            if(item.indexOf(promptTextBack) != -1) {
+              postfixListTemp.push(item);
+            }
+          }
+
+          promptText = promptText.slice(0, promptText.indexOf("@"));
+
+        }else{
+          postfixListTemp = postfixList;
+        }
+
+        var arrTemp = [];
+        //for..of..为ES6内容
+        for(var item of postfixListTemp) {
+          //console.log(promptText + "@" + item);
+          arrTemp.push(promptText + "@" + item);
+        }
+        return arrTemp;
+      }
+
+      //将提示内容添加到email-sug-wrapper中
+      function addToWrapper(promptArr) {
+        var emailWrapper = document.getElementById("email-sug-wrapper");
+        //先清除之前的li节点
+        //这里需要注意：从0开始索引删除，会删不干净，原来索引值为1的删掉一个之后会变层0
+        //解决方法便是从后面往前删
+        var ulLis = emailWrapper.getElementsByTagName("li");
+        for(var i = ulLis.length-1; i >= 0; i--) {
+          emailWrapper.removeChild(ulLis[i]);
+        }
+        //添加新li节点
+        for(var item of promptArr) {
+          //创建li节点
+          var liElement = document.createElement("li");
+          /*
+          * 这里可以添加li的相关属性：liElement.className = "1";
+          */
+          var liElementText = document.createTextNode(item);
+          liElement.appendChild(liElementText);
+          //添加到ul下的节点
+          emailWrapper.appendChild(liElement);
+        }
+        //console.log(emailWrapper);
+      }
+
+      //控制email-sug-wrapper的显示/隐藏状态
+      function wrapperShowOrNot(inputText) {
+        if(inputText == "") {
+          notShowPrompt();
+        }else {
+          showPrompt();          
+        }
+      }
+
+      //显示提示框
+      function showPrompt() {
+        emailWrapper.style.display = "";
+      }
+
+      //隐藏提示框
+      function notShowPrompt() {
+        emailWrapper.style.display = "none";
+      }
+
+      //鼠标按下抬起后将li中的内容传递到input
+      function addListListener(listArr) {
+        //这里必需为let i
+        for(let i = 0; i < listArr.length; i++) {
+          listArr[i].onmouseup = function() {
+            //console.log(listArr[i]);
+            document.getElementById("email-input").value = listArr[i].innerHTML;
+            //选择之后隐藏提示框
+            notShowPrompt();
+          }
+        }
+      }
+
+    </script>
+</body>
+</html>
