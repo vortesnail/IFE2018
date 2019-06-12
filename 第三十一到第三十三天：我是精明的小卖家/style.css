@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    box-sizing: border-box;
+    margin: 20px auto;
+}
+
+#select,
+#select1 {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    margin: 20px auto;
+    margin-top: 0;
+
+}
+
+#table-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#saleTable {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+#saleTable tr th,
+#saleTable tr td {
+    border: 1px solid #ccc;
+    width: 7%;
+    text-align: center;
+}
+
